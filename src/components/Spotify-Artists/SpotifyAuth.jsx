@@ -1,8 +1,7 @@
-import React from 'react'
-import { useEffect } from 'react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { getAccessToken, getProfile, getTopArtists } from '../../utils/spotify-api';
 import PageContainer from '../PageContainer';
+import ArtistsTable from './ArtistsTable';
 
 function SpotifyAuth() {
 
@@ -46,7 +45,7 @@ function SpotifyAuth() {
                 <h2 className='text-4xl font-semibold'>Generator</h2>
             </div>
             {artistas &&
-                <div>mostrar table</div>
+                (<ArtistsTable artistas={artistas} perfil={perfil} />)
             }
         </PageContainer>
     )
