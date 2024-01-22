@@ -26,7 +26,7 @@ function ArtistsTableGenerator() {
     }, [token, artists])
     return (
         <PageContainer>
-            <div className='text-white text-center w-3/4'>
+            <div className='mt-5 text-secondary text-center w-3/4'>
                 <h1 className='text-5xl font-bold pb-2'>Spotify Artist Table</h1>
                 <h2 className='text-4xl font-semibold'>Generator</h2>
             </div>
