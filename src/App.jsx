@@ -8,7 +8,7 @@ function App() {
 
   return (
     <Provider store={SpotifyStore}>
-      <div className='bg-amber-950/90 min-h-screen font-sans'>
+      <div className='min-h-screen font-sans'>
         <AppRouter />
         <Footer />
       </div>

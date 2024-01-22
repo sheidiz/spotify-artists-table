@@ -1,9 +1,9 @@
 import UserImage from '../user/UserImage'
 import ArtistImage from './ArtistImage'
 
-function ArtistsTable({ artistas, profile }) {
+function ArtistsTable({ artists, profile }) {
 
-    if (!artistas || !profile) return
+    if (!artists || !profile) return
 
     return (
         <div className='grid grid-cols-3 gap-2 relative justify-items-center'>
@@ -13,25 +13,25 @@ function ArtistsTable({ artistas, profile }) {
                 <UserImage user={profile} />
             </div>
             <div className="col-start-1 col-end-2 z-10">
-                <ArtistImage artista={artistas[0]} />
+                <ArtistImage artista={artists[0]} />
             </div>
             <div className="col-start-3 col-end-4 z-10">
-                <ArtistImage artista={artistas[1]} />
+                <ArtistImage artista={artists[1]} />
             </div>
             <div className="col-start-1 col-end-2 z-10">
-                <ArtistImage artista={artistas[2]} />
+                <ArtistImage artista={artists[2]} />
             </div>
             <div className="col-start-3 col-end-4 z-10">
-                <ArtistImage artista={artistas[3]} />
+                <ArtistImage artista={artists[3]} />
             </div>
             <div className="col-start-1 col-end-2 z-10">
-                <ArtistImage artista={artistas[4]} />
+                <ArtistImage artista={artists[4]} />
             </div>
             <div className="col-start-3 col-end-4 z-10">
-                <ArtistImage artista={artistas[5]} />
+                <ArtistImage artista={artists[5]} />
             </div>
             <div className='col-start-2 col-span-1 z-10'>
-                <ArtistImage artista={artistas[6]} />
+                <ArtistImage artista={artists[6]} />
             </div>
 
         </div>

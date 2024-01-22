@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react';
-import { getTopArtists } from '../../utils/spotify-api';
-import PageContainer from '../PageContainer';
-import ArtistsTable from './ArtistsTable';
 import { useSelector } from 'react-redux';
+import { getTopArtists } from '../utils/spotify-api';
+import PageContainer from '../components/PageContainer';
+import ArtistsTable from "../components/spotify-artists/ArtistsTable"
 
-function SpotifyAuth() {
+function ArtistsTableGenerator() {
 
     const [token, setToken] = useState((useSelector(store => store.user).token));
     const [profile, setProfile] = useState((useSelector(store => store.user).profile));
@@ -14,8 +14,8 @@ function SpotifyAuth() {
         const getData = async () => {
             try {
                 if (token) {
-                    const artists = await getTopArtists(token);
-                    setArtists(artists);
+                    const artists_ = await getTopArtists(token);
+                    setArtists(artists_);
                 }
             } catch (error) {
                 console.error("Error fetching artists")
@@ -43,4 +43,4 @@ function SpotifyAuth() {
     )
 }
 
-export default SpotifyAuth
+export default ArtistsTableGenerator
