@@ -14,7 +14,7 @@ function UserIconMenu({ profile, logIn, logOut }) {
         return (
             <button className='p-3 rounded-full bg-quaternary text-white' onClick={() => UserLogIn()}>
                 Log In With Spotify
-                </button>
+            </button>
         )
     }
 
@@ -24,10 +24,19 @@ function UserIconMenu({ profile, logIn, logOut }) {
                 arrowIcon={false}
                 inline
                 label={
-                    <Avatar alt="User settings" 
-                    img={profile.images[0].url} rounded 
-                    className='border-4 border-quaternary rounded-full'
+                    <Avatar rounded
+                        img={(props) => (
+                            <img alt="User settings"
+                                referrerPolicy="no-referrer"
+                                src={profile.images[0].url}
+                                height="48"
+                                width="48"
+                                {...props}
+                            />
+                        )}
+                        className='border-4 border-quaternary rounded-full'
                     />
+
                 }
             >
                 <Dropdown.Header className='px-4 text-center'>

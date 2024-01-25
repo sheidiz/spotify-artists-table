@@ -1,16 +1,3 @@
-export const getAccessToken = () => {
-    const queryParams = window.location.hash
-        .substring(1)
-        .split('&')
-        .reduce((acc, current) => {
-            const [key, value] = current.split('=');
-            acc[key] = decodeURIComponent(value);
-            return acc;
-        }, {});
-
-    return queryParams.access_token;
-};
-
 export const getTopArtists = async (token) => {
     try {
         const response = await fetch('https://api.spotify.com/v1/me/top/artists?limit=7', {

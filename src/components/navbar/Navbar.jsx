@@ -1,13 +1,14 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { NavLink } from 'react-router-dom';
 import { routes } from './routes';
 import { TbX, TbMenuDeep } from 'react-icons/tb';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useDispatch, useSelector } from 'react-redux';
 import style from './Navbar.module.css';
-import { getAccessToken, getProfile } from '../../utils/spotify-api';
+import { getProfile } from '../../utils/spotify-api';
 import { createUser, resetUser } from '../../redux/slices/UserSlice';
 import UserIconMenu from '../user/UserIconMenu';
+import { getAccessToken, redirectToAuthCodeFlow } from '../../utils/spotify-config';
 
 function Navbar() {
 
@@ -16,38 +17,42 @@ function Navbar() {
     const dispatch = useDispatch();
     const [isMenuOpen, setMenuOpen] = useState(false);
 
+    useEffect(() => {
+        const handleAuthCallback = async () => {
+            const clientId = import.meta.env.VITE_API_KEY;
+            const params = new URLSearchParams(window.location.search);
+            const code = params.get('code');
+            dispatch(createUser({ ...userState, code: code }));
+            if (code || userState.code) {
+                try {
+                    const accessToken = await getAccessToken(clientId, code);
+                    const profileData = await getProfile(accessToken);
+                    dispatch(createUser({ ...userState, token: accessToken, profile: profileData }));
+                    setProfile(profileData);
+                    window.location = "http://localhost:5173";
+                } catch (error) {
+                    console.error('Error fetching profile:', error.message);
+                }
+            }
+        };
+
+        handleAuthCallback();
+    }, [dispatch]);
+
     const toggleMenu = () => {
         setMenuOpen(!isMenuOpen);
-    }
+    };
 
-    const login = async () => {
-        const accessToken = getAccessToken();
-        let profile_;
-        if (accessToken) {
-            try {
-                profile_ = await getProfile(accessToken);
-            } catch (error) {
-                console.error('Error', error.message)
-            }
-            dispatch(
-                createUser({
-                    token: accessToken,
-                    profile: profile_
-                })
-            )
-        } else {
-            const clientId = import.meta.env.VITE_API_KEY;
-            const redirectUri = encodeURIComponent('http://localhost:5173/logged');
-            const authUrl = `https://accounts.spotify.com/authorize?client_id=${clientId}&redirect_uri=${redirectUri}&response_type=token&scope=user-top-read`;
+    const login = () => {
+        const clientId = import.meta.env.VITE_API_KEY;
+        redirectToAuthCodeFlow(clientId);
+    };
 
-            window.location.href = authUrl;
-
-        }
-    }
     const logout = () => {
         dispatch(resetUser());
         setProfile(null);
-    }
+    };
+
 
     return (
         <header className='bg-secondary p-2'>

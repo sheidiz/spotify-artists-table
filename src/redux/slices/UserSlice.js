@@ -4,6 +4,7 @@ import { getUserFromLocalStorage, saveInLocalStorage } from "../../utils/local-s
 export const USER_KEY = 'userState';
 
 const UserEmptyState = {
+    code: '',
     token: '',
     profile: '',
 };
