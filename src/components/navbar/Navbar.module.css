@@ -1,0 +1,20 @@
+.menuLinkDesktop {
+    padding: 0.5rem 1rem;
+    color: white;
+    font-size: 1.125rem;
+}
+
+.menuLinkDesktop:hover {
+    font-weight: 600;
+    --tw-scale-x: 1.1;
+    --tw-scale-y: 1.1;
+    transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+    border-bottom: 2px solid white;
+}
+
+.menuLinkMobile {
+    display: block;
+    padding: 1rem 0.5rem;
+    color: white;
+    font-size: 1.125rem;
+}
