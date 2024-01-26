@@ -1,35 +1,34 @@
 import { useEffect, useState } from 'react'
 import { NavLink } from 'react-router-dom';
-import { routes } from './routes';
-import { TbX, TbMenuDeep } from 'react-icons/tb';
-import { motion, AnimatePresence } from 'framer-motion';
-import { useDispatch, useSelector } from 'react-redux';
 import style from './Navbar.module.css';
-import { getProfile } from '../../utils/spotify-api';
-import { createUser, resetUser } from '../../redux/slices/UserSlice';
+import { routes } from './routes';
+import { motion, AnimatePresence } from 'framer-motion';
+import { TbX, TbMenuDeep } from 'react-icons/tb';
 import UserIconMenu from '../user/UserIconMenu';
 import { getAccessToken, redirectToAuthCodeFlow } from '../../utils/spotify-config';
+import { useDispatch, useSelector } from 'react-redux';
+import { getProfile } from '../../utils/spotify-api';
+import { createUser, resetUser } from '../../redux/slices/UserSlice';
+import {  resetArtists } from '../../redux/slices/ArtistsSlice';
 
 function Navbar() {
 
     const userState = useSelector(store => store.user);
     const [profile, setProfile] = useState(userState.profile);
-    const dispatch = useDispatch();
     const [isMenuOpen, setMenuOpen] = useState(false);
+    const dispatch = useDispatch();
 
     useEffect(() => {
         const handleAuthCallback = async () => {
             const clientId = import.meta.env.VITE_API_KEY;
             const params = new URLSearchParams(window.location.search);
             const code = params.get('code');
-            dispatch(createUser({ ...userState, code: code }));
             if (code || userState.code) {
                 try {
                     const accessToken = await getAccessToken(clientId, code);
                     const profileData = await getProfile(accessToken);
-                    dispatch(createUser({ ...userState, token: accessToken, profile: profileData }));
+                    dispatch(createUser({ code: code, token: accessToken, profile: profileData }));
                     setProfile(profileData);
-                    window.location = "http://localhost:5173";
                 } catch (error) {
                     console.error('Error fetching profile:', error.message);
                 }
@@ -50,6 +49,7 @@ function Navbar() {
 
     const logout = () => {
         dispatch(resetUser());
+        dispatch(resetArtists());
         setProfile(null);
     };
 

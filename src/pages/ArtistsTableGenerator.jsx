@@ -1,13 +1,16 @@
 import { useState, useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { getTopArtists } from '../utils/spotify-api';
 import PageContainer from '../components/PageContainer';
 import ArtistsTable from "../components/spotify-artists/ArtistsTable"
+import { createArtists } from '../redux/slices/ArtistsSlice';
 
 function ArtistsTableGenerator() {
 
-    const [token, setToken] = useState((useSelector(store => store.user).token));
-    const [profile, setProfile] = useState((useSelector(store => store.user).profile));
+    const dispatch = useDispatch();
+    const userState = useSelector(store => store.user);
+    const [token, setToken] = useState(userState.token);
+    const [profile, setProfile] = useState(userState.profile);
     const [artists, setArtists] = useState([]);
 
     useEffect(() => {
@@ -15,6 +18,7 @@ function ArtistsTableGenerator() {
             try {
                 if (token) {
                     const artists_ = await getTopArtists(token);
+                    dispatch(createArtists(artists_));
                     setArtists(artists_);
                 }
             } catch (error) {

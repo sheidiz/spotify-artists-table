@@ -8,6 +8,16 @@ export const getUserFromLocalStorage = (USER_KEY, UserEmptyState) => {
 
     return user;
 }
+export const getArtistsFromLocalStorage = (ARTISTS_KEY, ArtistsEmptyState) => {
+    let artists = localStorage.getItem(ARTISTS_KEY);
+    if (!artists) {
+        artists = ArtistsEmptyState;
+    } else {
+        artists = JSON.parse(artists);
+    }
+
+    return artists;
+}
 
 export const saveInLocalStorage = (key, value) => {
     localStorage.setItem(key, JSON.stringify(value));
