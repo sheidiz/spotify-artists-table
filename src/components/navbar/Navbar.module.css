@@ -1,6 +1,6 @@
 .menuLinkDesktop {
     padding: 0.5rem 1rem;
-    color: white;
+    color: #9EB8D9;
     font-size: 1.125rem;
 }
 
@@ -15,6 +15,6 @@
 .menuLinkMobile {
     display: block;
     padding: 1rem 0.5rem;
-    color: white;
+    color: #9EB8D9;
     font-size: 1.125rem;
 }

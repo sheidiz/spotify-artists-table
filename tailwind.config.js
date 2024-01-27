@@ -10,7 +10,7 @@ export default {
         'bg-wood': "url('./src/assets/bg-wood.jpg')"
       },
       colors: {
-        'primary': '#EEF5FF',
+        'primary': '#F9F9F9',
         'secondary': '#9EB8D9',
         'tertiary': '#7C93C3',
         'quaternary': '#A25772'

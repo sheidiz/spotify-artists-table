@@ -12,7 +12,7 @@ function UserIconMenu({ profile, logIn, logOut }) {
 
     if (!profile) {
         return (
-            <button className='p-3 rounded-full bg-quaternary text-white' onClick={() => UserLogIn()}>
+            <button className='text-sm md:text-md p-2 lg:p-3 rounded-full bg-quaternary text-white' onClick={() => UserLogIn()}>
                 Log In With Spotify
             </button>
         )

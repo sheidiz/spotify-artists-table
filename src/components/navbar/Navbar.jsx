@@ -50,27 +50,27 @@ function Navbar() {
     };
 
     return (
-        <header className='bg-secondary p-2'>
+        <header className='border-b border-secondary p-2'>
             <nav className='flex flex-row'>
-                <div className='container gap-5 mx-auto flex justify-start items-center'>
-                    <div className='text-gray-50 ms-2 text-2xl md:text-3xl font-medium'>
+                <div className='container gap-5 mx-auto flex justify-between lg:justify-start items-center'>
+                    <div className='text-secondary ms-2 text-2xl md:text-3xl font-medium'>
                         <NavLink to={routes.publics.INDEX}>
                             TuneCards
                         </NavLink>
                     </div>
                     <button
-                        className='lg:hidden me-2 text-white focus:outline-none'
+                        className='lg:hidden me-2 text-secondary focus:outline-none'
                         onClick={toggleMenu}
                     >
                         {isMenuOpen ?
-                            (<TbX className='text-white h-7 w-auto' />) :
-                            (<TbMenuDeep className='text-white h-7 w-auto' />)
+                            (<TbX className='text-secondary h-7 w-auto' />) :
+                            (<TbMenuDeep className='text-secondary h-7 w-auto' />)
                         }
                     </button>
 
                     <AnimatePresence>
                         {isMenuOpen && (
-                            <motion.div className='bg-secondary lg:hidden absolute top-12 left-0 right-0 bg-lightgreen py-2'
+                            <motion.div className='bg-white lg:hidden absolute top-20 left-0 right-0 bg-lightgreen py-2'
                                 initial={{ opacity: 0, y: -10 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 exit={{ opacity: 0, y: -10 }}
