@@ -3,6 +3,7 @@ import Navbar from './components/navbar/Navbar'
 import { routes } from './components/navbar/routes'
 import Home from './pages/Home'
 import ArtistsTableGenerator from './pages/ArtistsTableGenerator'
+import PageNotFound from './pages/PageNotFound'
 
 export default function AppRouter() {
     return (
@@ -12,6 +13,7 @@ export default function AppRouter() {
                 <Route path={routes.publics.INDEX} element={<Home />} />
                 <Route path={routes.publics.ABOUT} element={<h1>About</h1>} />
                 <Route path={routes.privates.ARTISTS_TABLE_GENERATOR} element={<ArtistsTableGenerator />} />
+                <Route path="*" element={<PageNotFound />} />
             </Routes>
         </BrowserRouter>
     )
