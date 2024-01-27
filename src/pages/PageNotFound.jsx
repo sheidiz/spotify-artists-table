@@ -1,6 +1,6 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
-import { routes } from '../components/navbar/routes'
+import { routes } from '../guards/routes'
 import PageContainer from '../components/PageContainer'
 
 function NotFoundComponent() {

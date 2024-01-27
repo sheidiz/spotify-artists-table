@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { NavLink } from 'react-router-dom';
 import style from './Navbar.module.css';
-import { routes } from './routes';
+import { routes } from '../../guards/routes';
 import { motion, AnimatePresence } from 'framer-motion';
 import { TbX, TbMenuDeep } from 'react-icons/tb';
 import UserIconMenu from '../user/UserIconMenu';
@@ -52,8 +52,8 @@ function Navbar() {
     return (
         <header className='bg-secondary p-2'>
             <nav className='flex flex-row'>
-                <div className='container mx-auto flex justify-between lg:justify-around items-center'>
-                    <div className='text-gray-50 ms-2 text-2xl md:text-3xl font-medium pt-1'>
+                <div className='container gap-5 mx-auto flex justify-start items-center'>
+                    <div className='text-gray-50 ms-2 text-2xl md:text-3xl font-medium'>
                         <NavLink to={routes.publics.INDEX}>
                             TuneCards
                         </NavLink>
@@ -82,18 +82,16 @@ function Navbar() {
                                 >
                                     Home
                                 </NavLink>
-                                <NavLink to={routes.privates.USER_INFO}
-                                    onClick={toggleMenu}
-                                    className={style.menuLinkMobile}
-                                >
-                                    User Info
-                                </NavLink>
-                                <NavLink to={routes.privates.ARTISTS_TABLE_GENERATOR}
-                                    onClick={toggleMenu}
-                                    className={style.menuLinkMobile}
-                                >
-                                    Artists Table Generator
-                                </NavLink>
+                                {userState.profile &&
+                                    <>
+                                        <NavLink to={routes.privates.ARTISTS_TABLE_GENERATOR}
+                                            onClick={toggleMenu}
+                                            className={style.menuLinkMobile}
+                                        >
+                                            Artists Table Generator
+                                        </NavLink>
+                                    </>
+                                }
                             </motion.div>
                         )}
                     </AnimatePresence>
@@ -104,18 +102,14 @@ function Navbar() {
                         >
                             Home
                         </NavLink>
-                        <NavLink to={routes.privates.USER_INFO}
-                            onClick={toggleMenu}
-                            className={style.menuLinkDesktop}
-                        >
-                            User Info
-                        </NavLink>
-                        <NavLink to={routes.privates.ARTISTS_TABLE_GENERATOR}
-                            onClick={toggleMenu}
-                            className={style.menuLinkDesktop}
-                        >
-                            Artists Table Generator
-                        </NavLink>
+                        {userState.profile &&
+                            <>
+                                <NavLink to={routes.privates.ARTISTS_TABLE_GENERATOR}
+                                    onClick={toggleMenu}
+                                    className={style.menuLinkDesktop}>
+                                    Artists Table Generator
+                                </NavLink>
+                            </>}
                     </div>
                 </div>
                 <div className='p-1'>
