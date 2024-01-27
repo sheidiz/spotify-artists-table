@@ -5,6 +5,7 @@ import Home from './pages/Home'
 import ArtistsTableGenerator from './pages/ArtistsTableGenerator'
 import PageNotFound from './pages/PageNotFound'
 import AuthGuard from './guards/auth-guard'
+import About from './pages/About'
 
 export default function AppRouter() {
     return (
@@ -12,6 +13,7 @@ export default function AppRouter() {
             <Navbar />
             <Routes>
                 <Route path={routes.publics.INDEX} element={<Home />} />
+                <Route path={routes.publics.ABOUT} element={<About />} />
                 <Route path="*" element={<PageNotFound />} />
                 <Route element={<AuthGuard />}>
                     <Route path={routes.privates.ARTISTS_TABLE_GENERATOR} element={<ArtistsTableGenerator />} />

@@ -4,7 +4,6 @@ export const routes = {
         ABOUT: '/about'
     },
     privates: {
-        USER_INFO: '/user',
         ARTISTS_TABLE_GENERATOR: '/artiststablegenerator'
     }
 }

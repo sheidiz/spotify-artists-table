@@ -50,10 +50,10 @@ function Navbar() {
     };
 
     return (
-        <header className='border-b border-secondary p-2'>
+        <header className='border-b p-2'>
             <nav className='flex flex-row'>
                 <div className='container gap-5 mx-auto flex justify-between lg:justify-start items-center'>
-                    <div className='text-secondary ms-2 text-2xl md:text-3xl font-medium'>
+                    <div className='text-tertiary ms-2 text-2xl md:text-3xl font-medium'>
                         <NavLink to={routes.publics.INDEX}>
                             TuneCards
                         </NavLink>
@@ -82,6 +82,12 @@ function Navbar() {
                                 >
                                     Home
                                 </NavLink>
+                                <NavLink to={routes.publics.ABOUT}
+                                    onClick={toggleMenu}
+                                    className={style.menuLinkMobile}
+                                >
+                                    About
+                                </NavLink>
                                 {userState.profile &&
                                     <>
                                         <NavLink to={routes.privates.ARTISTS_TABLE_GENERATOR}
@@ -97,15 +103,18 @@ function Navbar() {
                     </AnimatePresence>
                     <div className='hidden lg:flex'>
                         <NavLink to={routes.publics.INDEX}
-                            onClick={toggleMenu}
                             className={style.menuLinkDesktop}
                         >
                             Home
                         </NavLink>
+                        <NavLink to={routes.publics.ABOUT}
+                            className={style.menuLinkDesktop}
+                        >
+                            About
+                        </NavLink>
                         {userState.profile &&
                             <>
                                 <NavLink to={routes.privates.ARTISTS_TABLE_GENERATOR}
-                                    onClick={toggleMenu}
                                     className={style.menuLinkDesktop}>
                                     Artists Table Generator
                                 </NavLink>
