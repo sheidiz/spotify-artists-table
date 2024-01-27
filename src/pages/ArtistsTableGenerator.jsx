@@ -31,8 +31,8 @@ function ArtistsTableGenerator() {
     return (
         <PageContainer>
             <div className='mt-5 text-secondary text-center w-3/4'>
-                <h1 className='text-5xl font-bold pb-2'>Spotify Artist Table</h1>
-                <h2 className='text-4xl font-semibold'>Generator</h2>
+                <h1 className='text-4xl font-bold pb-2'>Spotify Artist Table Generator</h1>
+                <h3 className='text-3xl font-semibold'>{profile.display_name}{"'s"} Dinner</h3>
             </div>
             {artists &&
                 (

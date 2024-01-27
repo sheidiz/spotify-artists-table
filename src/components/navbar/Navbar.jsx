@@ -9,18 +9,17 @@ import { getAccessToken, redirectToAuthCodeFlow } from '../../utils/spotify-conf
 import { useDispatch, useSelector } from 'react-redux';
 import { getProfile } from '../../utils/spotify-api';
 import { createUser, resetUser } from '../../redux/slices/UserSlice';
-import {  resetArtists } from '../../redux/slices/ArtistsSlice';
+import { resetArtists } from '../../redux/slices/ArtistsSlice';
 
 function Navbar() {
 
-    const userState = useSelector(store => store.user);
-    const [profile, setProfile] = useState(userState.profile);
-    const [isMenuOpen, setMenuOpen] = useState(false);
+    const clientId = import.meta.env.VITE_API_KEY;
     const dispatch = useDispatch();
+    const userState = useSelector(store => store.user);
+    const [isMenuOpen, setMenuOpen] = useState(false);
 
     useEffect(() => {
         const handleAuthCallback = async () => {
-            const clientId = import.meta.env.VITE_API_KEY;
             const params = new URLSearchParams(window.location.search);
             const code = params.get('code');
             if (code || userState.code) {
@@ -28,7 +27,6 @@ function Navbar() {
                     const accessToken = await getAccessToken(clientId, code);
                     const profileData = await getProfile(accessToken);
                     dispatch(createUser({ code: code, token: accessToken, profile: profileData }));
-                    setProfile(profileData);
                 } catch (error) {
                     console.error('Error fetching profile:', error.message);
                 }
@@ -43,16 +41,13 @@ function Navbar() {
     };
 
     const login = () => {
-        const clientId = import.meta.env.VITE_API_KEY;
         redirectToAuthCodeFlow(clientId);
     };
 
     const logout = () => {
         dispatch(resetUser());
         dispatch(resetArtists());
-        setProfile(null);
     };
-
 
     return (
         <header className='bg-secondary p-2'>
@@ -124,7 +119,7 @@ function Navbar() {
                     </div>
                 </div>
                 <div className='p-1'>
-                    <UserIconMenu profile={profile} logIn={login} logOut={logout} />
+                    <UserIconMenu profile={userState.profile} logIn={login} logOut={logout} />
                 </div>
             </nav>
         </header>
