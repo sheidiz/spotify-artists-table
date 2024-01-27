@@ -30,8 +30,9 @@ function ArtistsTableGenerator() {
     }, [token, artists])
     return (
         <PageContainer>
-            <div className='mt-5 text-secondary text-center w-3/4'>
-                <h1 className='text-4xl font-bold pb-2'>Spotify Artist Table Generator</h1>
+            <div className='mt-5 text-gray-950 text-center lg:text-start w-3/4'>
+                <h1 className='text-3xl lg:text-5xl font-bold pb-2'>Spotify Artist Table Generator</h1>
+                <p className='text-lg lg:text-xl roboto-regular'>{"Here's "} how your Artists Table dinner would look like! (last 6 months)</p>
             </div>
             {artists &&
                 (
