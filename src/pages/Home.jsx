@@ -9,8 +9,8 @@ function Home() {
                     <h1 className='px-4 lg:px-2 mb-3 text-4xl lg:text-6xl font-black pb-2'>
                         Visualize Your Spotify Stats
                     </h1>
-                    <p className='px-2 text-lg lg:text-xl'> Ever wondered which artists would make the ultimate dinner party guest list based on your listening habits? </p>
-                    <p className='px-2 mb-3 text-lg lg:text-xl' > Or how about your very own personalized {`"Spotify Wrapped"`} anytime of the year?</p>
+                    <p className='px-2 text-lg lg:text-xl'>Ever wondered which artists would make the ultimate dinner party guest list based on your listening habits? </p>
+                    <p className='px-2 mb-3 text-lg lg:text-xl' >Or how about taking a peek at your very own {`"Spotify Wrapped"`} anytime of the year?</p>
                     <p className='text-quaternary px-2 text-lg'>
                         Discover and share your favorite beats in a whole new way with TuneCards - and {"it's"} completely free!
                     </p>
