@@ -1,6 +1,16 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-*{
+
+* {
     box-sizing: border-box;
+}
+
+#table {
+    border-top-left-radius: 15px 90px;
+    border-top-right-radius: 15px 90px;
+    border-bottom-left-radius: 15px 90px;
+    border-bottom-right-radius: 15px 90px;
+    width: 50%;
+    height: 80%;
 }
