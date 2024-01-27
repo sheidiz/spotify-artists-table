@@ -32,15 +32,10 @@ function ArtistsTableGenerator() {
         <PageContainer>
             <div className='mt-5 text-secondary text-center w-3/4'>
                 <h1 className='text-4xl font-bold pb-2'>Spotify Artist Table Generator</h1>
-                <h3 className='text-3xl font-semibold'>{profile.display_name}{"'s"} Dinner</h3>
             </div>
             {artists &&
                 (
-                    <div>
-                        <ArtistsTable artists={artists} profile={profile} />
-                        <button className='p-3 mx-auto my-2 border bg-white block'>Change Profile Pic</button> {/*this will change the top user image */}
-                        <button className='p-3 mx-auto my-2 border bg-white block'>Download Image</button>{/*this will let users download their table imgage */}
-                    </div>
+                    <ArtistsTable artists={artists} profile={profile} />
                 )
             }
         </PageContainer>
